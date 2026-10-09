@@ -1,0 +1,13 @@
+# Security policy applies to registry dependencies and frozen-lockfile installs.
+minimumReleaseAge: 1440 # 24 hours, in minutes
+minimumReleaseAgeStrict: true
+minimumReleaseAgeIgnoreMissingTime: false
+trustLockfile: false
+blockExoticSubdeps: true
+strictDepBuilds: true
+ignoreScripts: true
+optimisticRepeatInstall: false
+overrides:
+  postcss: $postcss
+  uuid: ^11.1.1
+  echarts: ^6.1.0

@@ -60,20 +60,24 @@ jobs:
         working-directory: src/agent_env/explorer/ui
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa
+        with:
+          version: 11.28.5
+          run_install: false
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
-          node-version: "22"
-          cache: npm
-          cache-dependency-path: src/agent_env/explorer/ui/package-lock.json
-      - run: npm ci
+          node-version: "24"
+          cache: pnpm
+          cache-dependency-path: src/agent_env/explorer/ui/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - name: Typecheck
-        run: npm run typecheck
+        run: pnpm run typecheck
       - name: Lint
-        run: npm run lint
+        run: pnpm run lint
       - name: Smoke suite
-        run: npm run test:smoke
+        run: pnpm run test:smoke
       - name: Static export
-        run: npm run build:static
+        run: pnpm run build:static
 
   integration-local:
     runs-on: ubuntu-latest

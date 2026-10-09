@@ -256,7 +256,7 @@ def _mount_spa(app: FastAPI, root: Path) -> None:
     index = root / "index.html"
     if not index.is_file():
         raise RuntimeError(
-            f"{root} has no index.html — build the UI with `npm run build:static` "
+            f"{root} has no index.html — build the UI with `pnpm run build:static` "
             "(a plain `next build` leaves the catch-all as '[[...slug]].html')."
         )
 

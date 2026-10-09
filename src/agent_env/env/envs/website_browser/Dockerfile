@@ -33,9 +33,10 @@ ENV PLAYWRIGHT_MCP_VERSION=${PLAYWRIGHT_MCP_VERSION}
 
 # Pre-install the pinned version and Playwright's Chromium, which is built for linux/amd64 and linux/arm64 alike
 # (Chrome has no Linux arm64 build).
-RUN npm init -y && \
-    npm install @playwright/mcp@${PLAYWRIGHT_MCP_VERSION} && \
-    npx playwright install chromium
+COPY pnpm-workspace.yaml /app/pnpm-workspace.yaml
+RUN npm install --global --ignore-scripts pnpm@11.28.5 && \
+    pnpm add --ignore-scripts --save-exact "@playwright/mcp@${PLAYWRIGHT_MCP_VERSION}" && \
+    pnpm exec playwright install chromium
 
 COPY entrypoint.sh /app/entrypoint.sh
 RUN chmod +x /app/entrypoint.sh

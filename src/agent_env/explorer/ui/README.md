@@ -9,8 +9,8 @@ The user guide is at [www.agentenvframework.com/docs](https://www.agentenvframew
 With `agent-env up` running, start the dev server from this folder:
 
 ```bash
-npm ci
-npm run dev        # http://localhost:3000
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm run dev        # http://localhost:3000
 ```
 
 The dev server proxies `/api/v1`, `/health` and `/openapi.json` to `http://127.0.0.1:8234`, the
@@ -20,8 +20,8 @@ explorer's default address. To point it somewhere else, copy `.env.example` to `
 ## Build
 
 ```bash
-npm run build:static   # writes out/
+pnpm run build:static   # writes out/
 ```
 
 `agent-env up` serves the built UI when `[explorer] static_dir` in `.agentenv/config.toml` points
-at `out/`. Checks: `npm run typecheck`, `npm run test:smoke` and `npm run lint`.
+at `out/`. Checks: `pnpm run typecheck`, `pnpm run test:smoke` and `pnpm run lint`.
